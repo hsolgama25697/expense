@@ -1,0 +1,113 @@
+﻿SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Category](
+	[Id] [Uniqueidentifier] NOT NULL,
+	[UserId] [Uniqueidentifier] NOT NULL,
+	[Name] [NVARCHAR](200) NOT NULL,
+	[Priority] [int] NOT NULL,
+	[IsDeleted] [BIT] NOT NULL,
+	[CreatedBy] [Uniqueidentifier] NOT NULL,
+	[CreatedDate] [DATETIME] NOT NULL,
+	[UpdatedBy] [Uniqueidentifier] NOT NULL, 
+	[UpdatedDate] [DATETIME] NOT NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SubCategory](
+	[Id] [Uniqueidentifier] NOT NULL,
+	[UserId] [Uniqueidentifier] NOT NULL,
+	[CategoryId] [Uniqueidentifier] NOT NULL,
+	[Name] [NVARCHAR](200) NOT NULL,
+	[Priority] [int] NOT NULL,
+	[IsDeleted] [BIT] NOT NULL,
+	[CreatedBy] [Uniqueidentifier] NOT NULL,
+	[CreatedDate] [DATETIME] NOT NULL,
+	[UpdatedBy] [Uniqueidentifier] NOT NULL, 
+	[UpdatedDate] [DATETIME] NOT NULL,
+ CONSTRAINT [PK_SubCategory] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Label](
+	[Id] [Uniqueidentifier] NOT NULL,
+	[UserId] [Uniqueidentifier] NOT NULL,
+	[Name] [NVARCHAR](200) NOT NULL,
+	[IsDeleted] [BIT] NOT NULL,
+	[CreatedBy] [Uniqueidentifier] NOT NULL,
+	[CreatedDate] [DATETIME] NOT NULL,
+	[UpdatedBy] [Uniqueidentifier] NOT NULL, 
+	[UpdatedDate] [DATETIME] NOT NULL,
+ CONSTRAINT [PK_Label] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Expense](
+	[Id] [Uniqueidentifier] NOT NULL,
+	[UserId] [Uniqueidentifier] NOT NULL,
+	[CategoryId] [Uniqueidentifier] NULL,
+	[SubCategoryId] [Uniqueidentifier] NULL,
+	[LabelId] [NVARCHAR](MAX)  NULL,
+	[Amount] [Decimal](18,2) NOT NULL,
+	[AccountType] [Int] NULL,
+	[Description] [NVARCHAR](MAX) NULL,
+	[PayeeName] [NVARCHAR](500) NULL,
+	[Date] [date] NULL,
+	[Time] [time] NULL,
+	[PaymentType] [Int] NULL,
+	[Warranty] [Int] NULL,
+	[Status] [Int] NULL,
+	[Location] [NVARCHAR](MAX) NULL,
+	[IsDeleted] [BIT] NOT NULL,
+	[CreatedBy] [Uniqueidentifier] NOT NULL,
+	[CreatedDate] [DATETIME] NOT NULL,
+	[UpdatedBy] [Uniqueidentifier] NOT NULL, 
+	[UpdatedDate] [DATETIME] NOT NULL,
+ CONSTRAINT [PK_Expense] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ExpenseAttachment](
+	[Id] [Uniqueidentifier] NOT NULL,
+	[UserId] [Uniqueidentifier] NOT NULL,
+	[ExpenseId] [Uniqueidentifier] NULL,
+	[PhysicalName] [NVARCHAR](500) NULL,
+	[LogicalName] [NVARCHAR](500) NULL,
+	[CreatedBy] [Uniqueidentifier] NOT NULL,
+	[CreatedDate] [DATETIME] NOT NULL,
+ CONSTRAINT [PK_ExpenseAttachment] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
